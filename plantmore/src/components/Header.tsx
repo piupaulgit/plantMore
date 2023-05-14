@@ -1,4 +1,4 @@
-import { logo } from "@/app/assets/images";
+import { logo } from "../assets/images";
 import React from "react";
 import Image from 'next/image'
 
