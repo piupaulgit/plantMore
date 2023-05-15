@@ -16,7 +16,10 @@ export function Tabs(props: any) {
   }
   return (
     <div className="my-20 container mx-auto">
-      <div className="flex gap-2 justify-center">
+      <div className={`flex gap-2
+      ${
+        props.position
+      } ${!props.divider && 'mb-10'}`}>
         {props.children.map((item: any, i: number) => {
           return (
             <>
@@ -32,7 +35,8 @@ export function Tabs(props: any) {
           );
         })}
       </div>
-      <div className="p-5">
+      {props.divider && <hr className="mb-5"></hr> }
+      <div className="pb-5">
         {props.children.map((item: any, i: number) => {
           return <div className={` ${i === activeTab ? "visible" : "hidden"}`}>{item.props.children}</div>;
         })}
