@@ -1,4 +1,4 @@
-import OtherPageBanner from "@/components/OtherPageBanner";
+import OtherPageBanner from "../OtherPageBanner";
 import React from "react";
 
 const Register = () => {

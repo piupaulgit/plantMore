@@ -25,7 +25,7 @@ const Header = () => {
               </a>
             ))}
           </nav>
-          <ul className="flex gap-2 text-sm">
+          {/* <ul className="flex gap-2 text-sm">
             <li className="text-gray-600">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16">
               <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
@@ -38,22 +38,10 @@ const Header = () => {
             <li>
               <a className="text-gray-600 hover:text-lime-600" href="/login">Login</a>
             </li>
-          </ul>
-          {/* <ul className="flex gap-6">
+          </ul> */}
+          <ul className="flex gap-6 items-center">
             <li>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                className="bi bi-search"
-                viewBox="0 0 16 16"
-              >
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-              </svg>
-            </li>
-            <li>
-              <span className=" relative">
+              <a className=" relative flex" href="/wishList">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -67,10 +55,10 @@ const Header = () => {
                 <span className=" right-[-12px] top-[-8px] absolute bg-lime-600 w-4 h-4 block text-[8px]/[16px] text-gray-50 rounded-xl text-center">
                   09
                 </span>
-              </span>
+              </a>
             </li>
             <li>
-              <span className=" relative">
+            <a className=" relative flex" href="/cart">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -84,9 +72,16 @@ const Header = () => {
                 <span className=" right-[-11px] top-[-8px] absolute bg-lime-600 w-4 h-4 block text-[8px]/[16px] text-gray-50 rounded-xl text-center">
                   10
                 </span>
-              </span>
+              </a>
             </li>
-          </ul> */}
+            <li>
+              <button className="w-[35px] h-[35px] ml-3 rounded-full bg-lime-600 text-white text-center flex justify-center items-center hover:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+            </svg>
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
     </header>

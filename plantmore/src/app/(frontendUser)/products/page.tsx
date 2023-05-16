@@ -1,5 +1,5 @@
-import OtherPageBanner from "@/components/OtherPageBanner";
-import ProductCard from "@/components/ProductCard";
+import OtherPageBanner from "../../OtherPageBanner";
+import ProductCard from "../../ProductCard";
 import React from "react";
 
 const Products = () => {
