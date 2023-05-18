@@ -1,8 +1,16 @@
+'use client';
+
 import { logo } from "../assets/images";
 import React from "react";
 import Image from 'next/image'
+import { useDispatch } from 'react-redux'
+import { modalAction } from "../../redux/modalSlice";
+import { usePathname, useSearchParams } from 'next/navigation';
 
 const Header = () => {
+  const dispath = useDispatch()
+  const pathName = usePathname();
+
   return (
     <header className="flex py-6">
       <div className="container mx-auto">
@@ -19,26 +27,26 @@ const Header = () => {
             ].map(([title, url]) => (
               <a
                 href={url}
-                className="rounded-lg px-3 py-2 text-slate-700 font-medium hover:bg-slate-100 hover:text-slate-900"
+                className={`${pathName == url ? "text-lime-600 underline" : "text-slate-700"} rounded-lg px-3 py-2  font-medium hover:bg-slate-100 hover:text-slate-900`}
               >
                 {title}
               </a>
             ))}
           </nav>
-          {/* <ul className="flex gap-2 text-sm">
+          <ul className="flex gap-2 text-sm">
             <li className="text-gray-600">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16">
               <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
             </svg>
             </li>
             <li>
-              <a className="text-gray-600 hover:text-lime-600" href="/register">Register</a>
+              <button className="text-gray-600 hover:text-lime-600" onClick={()=>dispath(modalAction({modalName: 'registerModal', isOpen: true}))}>Register</button>
             </li>
             <li>/</li>
             <li>
-              <a className="text-gray-600 hover:text-lime-600" href="/login">Login</a>
+              <button className="text-gray-600 hover:text-lime-600" onClick={()=>dispath(modalAction({modalName: 'loginModal', isOpen: true}))}>Login</button>
             </li>
-          </ul> */}
+          </ul>
           <ul className="flex gap-6 items-center">
             <li>
               <a className=" relative flex" href="/wishList">

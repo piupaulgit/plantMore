@@ -4,8 +4,9 @@ export default function AdminLayout({
     children: React.ReactNode;
   }) {
     return (
-      <section>
+      <main>
+        <div className="h-[5px] bg-lime-600"></div>
         {children}
-      </section>
+      </main>
     );
   }

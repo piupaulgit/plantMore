@@ -1,6 +1,6 @@
-import OtherPageBanner from '@/components/OtherPageBanner'
-import SelectedProductList from '@/components/SelectedProductList'
-import { Tab, Tabs } from '@/components/Tabs'
+import OtherPageBanner from '../../OtherPageBanner'
+import SelectedProductList from '../../SelectedProductList'
+import { Tab, Tabs } from '../../Tabs'
 import React from 'react'
 
 const user = () => {
