@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
 import { logo } from "../assets/images";
 import React from "react";
-import Image from 'next/image'
-import { useDispatch } from 'react-redux'
+import Image from "next/image";
+import { useDispatch } from "react-redux";
 import { modalAction } from "../../redux/modalSlice";
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from "next/navigation";
 
 const Header = () => {
-  const dispath = useDispatch()
+  const dispath = useDispatch();
   const pathName = usePathname();
 
   return (
@@ -27,7 +27,9 @@ const Header = () => {
             ].map(([title, url]) => (
               <a
                 href={url}
-                className={`${pathName == url ? "text-lime-600 underline" : "text-slate-700"} rounded-lg px-3 py-2  font-medium hover:bg-slate-100 hover:text-slate-900`}
+                className={`${
+                  pathName == url ? "text-lime-600 underline" : "text-slate-700"
+                } rounded-lg px-3 py-2  font-medium hover:bg-slate-100 hover:text-slate-900`}
               >
                 {title}
               </a>
@@ -35,19 +37,45 @@ const Header = () => {
           </nav>
           <ul className="flex gap-2 text-sm">
             <li className="text-gray-600">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16">
-              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                className="bi bi-person"
+                viewBox="0 0 16 16"
+              >
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+              </svg>
             </li>
             <li>
-              <button className="text-gray-600 hover:text-lime-600" onClick={()=>dispath(modalAction({modalName: 'registerModal', isOpen: true}))}>Register</button>
+              <button
+                className="text-gray-600 hover:text-lime-600"
+                onClick={() =>
+                  dispath(
+                    modalAction({ modalName: "registerModal", isOpen: true })
+                  )
+                }
+              >
+                Register
+              </button>
             </li>
             <li>/</li>
             <li>
-              <button className="text-gray-600 hover:text-lime-600" onClick={()=>dispath(modalAction({modalName: 'loginModal', isOpen: true}))}>Login</button>
+              <button
+                className="text-gray-600 hover:text-lime-600"
+                onClick={() =>
+                  dispath(
+                    modalAction({ modalName: "loginModal", isOpen: true })
+                  )
+                }
+              >
+                Login
+              </button>
             </li>
           </ul>
-          <ul className="flex gap-6 items-center">
+          {/* if has user */}
+          {/* <ul className="flex gap-6 items-center">
             <li>
               <a className=" relative flex" href="/wishList">
                 <svg
@@ -89,7 +117,7 @@ const Header = () => {
             </svg>
               </button>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </div>
     </header>
