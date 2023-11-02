@@ -1,6 +1,6 @@
 const User = require("../models/user");
-const expressJwt = require("express-jwt");
-const jwt = require("jsonwebtoken");
+const jsonToken = require("jsonwebtoken");
+const { expressjwt: jwt } = require("express-jwt");
 
 // register controller
 exports.register = async (req, res) => {
@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
       });
     }
 
-    const token = jwt.sign({ _id: user._id }, process.env.SECRETKEY);
+    const token = jsonToken.sign({ _id: user._id }, process.env.SECRETKEY);
 
     res.cookie("token", token);
 
@@ -59,4 +59,35 @@ exports.logout = (req, res) => {
   res.json({
     message: "User logged out successfully",
   });
+};
+
+
+
+// is signedin checking
+exports.isSignedIn = jwt({
+  secret: process.env.SECRETKEY,
+  userProperty: "auth",
+  algorithms: ["HS256"],
+});
+
+// is authenticated
+exports.isAuthenticated = (req, res, next) => {
+  const checker = req.profile && req.auth && req.profile._id == req.auth._id;
+  if (!checker) {
+    return res.status(403).json({
+      message: "access denieddd",
+    });
+  }
+  next();
+};
+
+// is admin
+exports.isAdmin = (req, res, next) => {
+  if (req.profile.role === 0) {
+    return res.status(403).json({
+      message: "you are not admin",
+    });
+  }
+
+  next();
 };
