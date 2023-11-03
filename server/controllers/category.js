@@ -39,6 +39,25 @@ exports.getAllCategories = async (req, res) => {
   }
 };
 
+exports.updateCategory =  async (req, res) => {
+  try {
+    const category = await Category.findByIdAndUpdate(
+      { _id: req.category._id },
+      { $set: req.body },
+      { new: true, useFindAndModify: false }
+    );
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        category: category,
+      },
+    });
+  } catch (err) {
+    console.log("err");
+  }
+}
+
 exports.deleteCategory = async (req, res) => {
   const category = req.category;
   try{
@@ -52,4 +71,3 @@ exports.deleteCategory = async (req, res) => {
   }
 }
 
-//
