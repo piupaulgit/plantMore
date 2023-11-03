@@ -17,6 +17,17 @@ exports.getUserById = async (req, res, next, id) => {
   }
 };
 
+exports.getUser = async (req, res) => {
+  req.profile.salt = undefined;
+  req.profile.encry_password = undefined;
+  res.status(201).json({
+    status: "success",
+    data: {
+      user: req.profile,
+    },
+  });
+};
+
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -25,5 +36,24 @@ exports.getAllUsers = async (req, res) => {
     return res.status(400).json({
       error: "No User found",
     });
+  }
+};
+
+exports.updateUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      { _id: req.profile._id },
+      { $set: req.body },
+      { new: true, useFindAndModify: false }
+    );
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        user: user,
+      },
+    });
+  } catch (err) {
+    console.log("err");
   }
 };

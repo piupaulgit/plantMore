@@ -1,12 +1,15 @@
 // user routes
 const express = require("express");
+const { isSignedIn, isAuthenticated } = require("../controllers/auth");
 const router = express.Router();
 
 const {
-  getUserById, getAllUsers,
+  getUserById, getAllUsers, getUser, updateUser,
 } = require("../controllers/user");
 
 router.param("userId", getUserById);
+router.get("/:userId", isSignedIn, isAuthenticated, getUser);
 router.get("/all", getAllUsers);
+router.put("/:userId", isSignedIn, isAuthenticated, updateUser);
 
 module.exports = router;

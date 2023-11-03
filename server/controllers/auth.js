@@ -61,8 +61,6 @@ exports.logout = (req, res) => {
   });
 };
 
-
-
 // is signedin checking
 exports.isSignedIn = jwt({
   secret: process.env.SECRETKEY,
@@ -75,7 +73,7 @@ exports.isAuthenticated = (req, res, next) => {
   const checker = req.profile && req.auth && req.profile._id == req.auth._id;
   if (!checker) {
     return res.status(403).json({
-      message: "access denieddd",
+      message: "access denied",
     });
   }
   next();
