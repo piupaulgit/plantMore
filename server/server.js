@@ -12,6 +12,7 @@ const app = express();
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const CategoryRoutes = require("./routes/category");
+const productRoutes = require("./routes/product")
 
 // db connection
 mongoose
@@ -38,6 +39,7 @@ const port = process.env.PORT || 8000;
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/category", CategoryRoutes);
+app.use("/api/products", productRoutes)
 
 // starting server
 app.listen(port, () =>
