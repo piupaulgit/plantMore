@@ -42,7 +42,7 @@ const ProductSchema = new Schema(
             ref: "Categoty",
             required: true,
         },
-        image: {
+        photo: {
             data: Buffer,
             contentType: String,
         },

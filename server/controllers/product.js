@@ -18,6 +18,7 @@ exports.addProduct = async (req, res) => {
   let form = new formidable.IncomingForm();
   form.keepExtensions = true;
 
+    console.log(req.body,'ppppppppppp')
   form.parse(req, async (err, fields, file) => {
     if (err) {
       return res.status(400).json({
@@ -26,14 +27,20 @@ exports.addProduct = async (req, res) => {
     }
 
     const { name, category, price, stock } = fields;
-    console.log(name, category,'ppppppppppp')
     if (!name || !category || !price || !stock) {
       return res.status(400).json({
         error: "Please fill all the inputs",
       });
     }
 
-    let product = await Product.create(fields);
+    const obg = {
+      name: name[0],
+      category: category[0],
+      price: price[0],
+      stock: stock[0]
+    }
+
+    let product = await Product.create(obg);
 
     if (file.photo) {
         if (file.photo.size > 3000000) {
@@ -41,8 +48,9 @@ exports.addProduct = async (req, res) => {
             error: "File size too big",
           });
         }
-        product.photo.data = fs.readFileSync(file.photo.path);
-        product.photo.contentType = file.photo.type;
+        console.log(file.photo)
+        product.photo.data = fs.readFileSync(file.photo[0].filepath);
+        product.photo.contentType = file.photo[0].mimetype;
       }
 
       try {
