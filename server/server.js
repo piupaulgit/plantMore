@@ -10,9 +10,10 @@ const app = express();
 
 // routes
 const authRoutes = require("./routes/auth");
-const userRoutes = require("./routes/user");
-const CategoryRoutes = require("./routes/category");
+const bannerRoutes = require("./routes/banner");
+const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/product")
+const userRoutes = require("./routes/user");
 
 // db connection
 mongoose
@@ -36,10 +37,11 @@ app.use(cors());
 const port = process.env.PORT || 8000;
 
 // my routes
+app.use("/api/banner", bannerRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
-app.use("/api/category", CategoryRoutes);
+app.use("/api/category", categoryRoutes);
 app.use("/api/products", productRoutes)
+app.use("/api/user", userRoutes);
 
 // starting server
 app.listen(port, () =>
