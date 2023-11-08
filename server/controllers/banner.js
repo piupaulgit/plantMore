@@ -1,25 +1,105 @@
 const Banner = require("../models/banner");
+const formidable = require("formidable");
+const _ = require("lodash");
+const fs = require("fs");
+
+exports.getBannerById = async(req, res, next, id) => {
+  try{
+    const banner = await Banner.findById(id);
+    req.banner = banner;
+    next()
+  }catch(err){
+    console.log(err)
+  }
+}
 
 exports.addBanner = async (req, res) => {
-  try {
-    const banner = await Banner.create(req.body);
-    res.status(200).json({
-      status: "success",
-      data: {
-        banner: banner,
-      },
-    });
-  } catch (err) {
-    console.log(err);
-  }
+  let form = new formidable.IncomingForm();
+  form.keepExtensions = true;
+
+  form.parse(req, async (err, fields, file) => {
+    if (err) {
+      return res.status(400).json({
+        error: "something wrong with file",
+      });
+    }
+
+    const { title, subTitle, type } = fields;
+    if (!title || !subTitle || !type) {
+      return res.status(400).json({
+        error: "Please fill all the inputs",
+      });
+    }
+
+    const obg = {
+      title: title[0],
+      subTitle: subTitle[0],
+      type: type[0]
+    };
+
+    let banner = await Banner.create(obg);
+
+    if (file.image) {
+      if (file.image.size > 3000000) {
+        return res.status(400).json({
+          error: "File size too big",
+        });
+      }
+
+      banner.image.data = fs.readFileSync(file.image[0].filepath);
+      banner.image.contentType = file.image[0].mimetype;
+    }
+
+    try {
+      const savedBanner = await banner.save();
+      res.json(savedBanner);
+    } catch (err) {
+      return res.status(400).json({
+        error: err.message,
+      });
+    }
+  });
 };
 
 exports.updateBanner = async(req, res) => {
-    try{
+  let form = new formidable.IncomingForm();
+  form.keepExtensions = true;
 
-    }catch(err){
-        
+  form.parse(req, async (err, fields, file) => {
+    if (err) {
+      return res.status(400).json({
+        error: "something wrong with file",
+      });
     }
+
+    let obj = {};
+    Object.keys(fields).forEach(el => {
+      obj[el] = fields[el][0]
+    })
+
+    let banner = req.banner;
+    banner = _.extend(banner, obj);
+
+    if (file.image) {
+      if (file.image.size > 3000000) {
+        return res.status(400).json({
+          error: "File size too big",
+        });
+      }
+
+      banner.image.data = fs.readFileSync(file.image[0].filepath);
+      banner.image.contentType = file.image[0].mimetype;
+    }
+
+    try {
+      const savedBanner = await banner.save();
+      res.json(savedBanner);
+    } catch (err) {
+      return res.status(400).json({
+        error: err.message,
+      });
+    }
+  });
 }
 
 exports.getAllBanners = async (req, res) => {
@@ -38,7 +118,7 @@ exports.getAllBanners = async (req, res) => {
 
 exports.deleteBanner = async (req, res) => {
   try {
-    const banner = await Banner.deleteOne({ _id: req.query.id });
+    const banner = await Banner.deleteOne({ _id: req.banner._id });
     res.status(200).json({
       status: "success",
       data: {

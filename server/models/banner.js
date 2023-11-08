@@ -16,6 +16,10 @@ const BannerSchema = new Schema (
         subTitle: {
             type: String,
             require: true
+        },
+        image: {
+            data: Buffer,
+            contentType: String
         }
     },
     { timestamps: true }
