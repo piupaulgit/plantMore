@@ -1,5 +1,6 @@
 const Product = require("../models/product");
 const formidable = require("formidable");
+const _ = require("lodash");
 const fs = require("fs");
 
 exports.getProductById = async (req, res, next, id) => {
@@ -84,8 +85,44 @@ exports.addProduct = async (req, res) => {
 };
 
 exports.updateProduct = async (req, res) => {
-  try {
-  } catch (err) {}
+  let form = new formidable.IncomingForm();
+  form.keepExtensions = true;
+
+  form.parse(req, async (err, fields, file) => {
+    if (err) {
+      return res.status(400).json({
+        error: "something wrong with file",
+      });
+    }
+
+    let obj = {};
+    Object.keys(fields).forEach(el => {
+      obj[el] = fields[el][0]
+    })
+
+    let product = req.product;
+    product = _.extend(product, obj);
+
+    if (file.photo) {
+      if (file.photo.size > 3000000) {
+        return res.status(400).json({
+          error: "File size too big",
+        });
+      }
+
+      product.photo.data = fs.readFileSync(file.photo[0].filepath);
+      product.photo.contentType = file.photo[0].mimetype;
+    }
+
+    try {
+      const savedProduct = await product.save();
+      res.json(savedProduct);
+    } catch (err) {
+      return res.status(400).json({
+        error: err.message,
+      });
+    }
+  });
 };
 
 exports.deleteProduct = async(req, res) => {
