@@ -31,13 +31,12 @@ exports.addBanner = async (req, res) => {
       });
     }
 
-    const obg = {
-      title: title[0],
-      subTitle: subTitle[0],
-      type: type[0]
-    };
+    let obj = {};
+    Object.keys(fields).forEach(el => {
+      obj[el] = fields[el][0]
+    })
 
-    let banner = await Banner.create(obg);
+    let banner = await Banner.create(obj);
 
     if (file.image) {
       if (file.image.size > 3000000) {

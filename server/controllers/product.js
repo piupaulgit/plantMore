@@ -22,10 +22,41 @@ exports.getProduct = (req, res) => {
     },
   });
 }
-
+// price gt = 500
 exports.getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    const queryObj = {...req.query};
+    const excludedQueries = ['sort', 'limit', 'page'];
+    excludedQueries.forEach(el => delete queryObj[el]);
+
+    // advance filtering
+    let queryString = JSON.stringify(queryObj);
+    queryString = queryString.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
+    let query = Product.find(JSON.parse(queryString));
+
+    if(req.query.sort){
+      const sortBy = req.query.sort;
+      query = query.sort(sortBy)
+    }else{
+      query = query.sort('-createdAt')
+    }
+
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 8;
+    const skip = (page - 1) * limit;
+
+    query = query.skip(skip).limit(limit)
+
+    if(req.query.page){
+      const totalPageCount = await Product.countDocuments();
+      if(skip >= totalPageCount) throw new Error('This page does not exist.')
+    }
+
+
+    
+
+    const products = await query;
+
     res.status(201).json({
       status: "success",
       data: {
@@ -34,7 +65,7 @@ exports.getAllProducts = async (req, res) => {
     });
   } catch (err) {}
 };
-
+ 
 exports.addProduct = async (req, res) => {
   let form = new formidable.IncomingForm();
   form.keepExtensions = true;
@@ -53,14 +84,12 @@ exports.addProduct = async (req, res) => {
       });
     }
 
-    const obg = {
-      name: name[0],
-      category: category[0],
-      price: price[0],
-      stock: stock[0],
-    };
+    let obj = {};
+    Object.keys(fields).forEach(el => {
+      obj[el] = fields[el][0]
+    })
 
-    let product = await Product.create(obg);
+    let product = await Product.create(obj);
 
     if (file.photo) {
       if (file.photo.size > 3000000) {
