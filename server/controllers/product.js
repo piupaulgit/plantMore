@@ -22,7 +22,7 @@ exports.getProduct = (req, res) => {
     },
   });
 }
-// price gt = 500
+
 exports.getAllProducts = async (req, res) => {
   try {
     const queryObj = {...req.query};
