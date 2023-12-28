@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const { ObjectId } = mongoose.Schema;
 
 const productCartSchema = new mongoose.Schema({
     product: {
@@ -20,16 +21,13 @@ const OrderSchema = new Schema(
             type: Number
         },
         shippingAddress: {
-          type: String,
-          required: true,
+          type: String
         },
         billingAddress: {
-            type: String,
-            required: true,
+            type: String
         },
         mobile:{
-          type: Number,
-          required: true
+          type: Number
         },
         status: {
           type: String, 
