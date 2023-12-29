@@ -1,18 +1,59 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../inputs/Input";
 import Modal from "./Modal";
 
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/store";
 import { modalAction } from "../../redux/modalSlice";
+import toast, { Toaster } from "react-hot-toast";
+import { userLogin } from "@/services/apis/user";
+
+interface User {
+  email: string;
+  password: string;
+}
 
 const LoginModal = () => {
   const loginModalState = useSelector(
     (state: RootState) => state.ModalReducer.activeModalName
   );
   const dispatch = useDispatch();
+  const [user, setUser] = useState<User>(Object);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isDisable, setIsDisable] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (user.email && user.password) {
+      setIsDisable(false);
+    } else {
+      setIsDisable(true);
+    }
+  }, [user]);
+
+  const handleOnChange = (e: any) => {
+    setUser({ ...user, [e.target.id]: e.target.value });
+  };
+
+  const login = () => {
+    setIsLoading(true);
+    setIsDisable(true);
+    try {
+      userLogin(user).then((res: any) => {
+        toast.success("Here is your toast.");
+        setUser({ email: "", password: "" });
+        console.log(res);
+      });
+    } catch (err) {
+      console.log(err);
+      toast.success("Here is your tossast.");
+    } finally {
+      setIsLoading(false);
+      setIsDisable(true);
+      setUser({ email: "", password: "" });
+    }
+  };
 
   const bodyContent = (
     <>
@@ -23,13 +64,20 @@ const LoginModal = () => {
         If you have an account plese login here
       </h6>
       <div className="flex flex-col gap-4">
-        <Input id="email" label="Email Address" disabled={false} required />
         <Input
-          id="passord"
+          id="email"
+          label="Email Address"
+          disabled={false}
+          required
+          onChange={(e: any) => handleOnChange(e)}
+        />
+        <Input
+          id="password"
           label="Password"
           disabled={false}
           required
           type="password"
+          onChange={(e: any) => handleOnChange(e)}
         />
       </div>
     </>
@@ -38,8 +86,12 @@ const LoginModal = () => {
   const footerContent = (
     <div className="flex flex-col gap-4 mt-3">
       <hr />
-      <button className="bg-lime-600 text-white py-3 hover:bg-gray-900">
-        Login
+      <button
+        className="bg-lime-600 text-white py-3 hover:bg-gray-900 disabled:bg-gray-400"
+        disabled={isDisable}
+        onClick={login}
+      >
+        {isLoading ? "Logging you in. Please wait... " : "Login"}
       </button>
       <div
         className="
@@ -67,13 +119,16 @@ const LoginModal = () => {
     </div>
   );
   return (
-    <Modal
-      disabled={false}
-      isOpen={loginModalState === "loginModal" ? true : false}
-      title="User Login"
-      body={bodyContent}
-      footer={footerContent}
-    />
+    <>
+      <Toaster />
+      <Modal
+        disabled={false}
+        isOpen={loginModalState === "loginModal" ? true : false}
+        title="User Login"
+        body={bodyContent}
+        footer={footerContent}
+      />
+    </>
   );
 };
 

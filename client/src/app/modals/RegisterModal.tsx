@@ -55,7 +55,6 @@ const RegisterModal = () => {
         toast.error(res.message);
       }
     });
-    console.log(register);
   };
 
   const bodyContent = (
