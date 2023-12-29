@@ -45,11 +45,11 @@ exports.login = async (req, res) => {
     return res.status(200).json({
       status: 'success',
       message: `Congratulation! You are logged in now.`,
-      token,
       user: {
         _id: user._id,
         email: user.email,
         role: user.role,
+        accessToken: token
       },
     });
   } catch (err) {

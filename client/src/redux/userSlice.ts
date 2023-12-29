@@ -20,7 +20,7 @@ export const User = createSlice({
     initialState,
     reducers: {
         saveUser: (state, action: PayloadAction<IUser>) => {
-            state.currentUser = action.payload
+            state.currentUser = action.payload;
         }
     },
   });

@@ -9,6 +9,7 @@ import { RootState } from "../../redux/store";
 import { modalAction } from "../../redux/modalSlice";
 import toast, { Toaster } from "react-hot-toast";
 import { userLogin } from "@/services/apis/user";
+import { saveUser } from "@/redux/userSlice";
 
 interface User {
   email: string;
@@ -43,6 +44,15 @@ const LoginModal = () => {
       userLogin(user).then((res: any) => {
         if (res.status === "success") {
           toast.success(res.message);
+          const { email, accessToken, role } = res.user;
+          dispatch(
+            saveUser({
+              email,
+              accessToken,
+              role,
+            })
+          );
+          localStorage.setItem("accessToken", accessToken);
         } else {
           toast.error(res.message);
         }
