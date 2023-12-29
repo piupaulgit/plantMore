@@ -41,17 +41,15 @@ const LoginModal = () => {
     setIsDisable(true);
     try {
       userLogin(user).then((res: any) => {
-        toast.success("Here is your toast.");
-        setUser({ email: "", password: "" });
-        console.log(res);
+        if (res.status === "success") {
+          toast.success(res.message);
+        } else {
+          toast.error(res.message);
+        }
+        setIsLoading(false);
       });
-    } catch (err) {
-      console.log(err);
-      toast.success("Here is your tossast.");
-    } finally {
-      setIsLoading(false);
-      setIsDisable(true);
-      setUser({ email: "", password: "" });
+    } catch (err: any) {
+      toast.error(err);
     }
   };
 

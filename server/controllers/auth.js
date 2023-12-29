@@ -9,6 +9,7 @@ exports.register = async (req, res) => {
 
     res.status(201).json({
       status: "success",
+      message: "Congratulations! You are added.",
       data: {
         user: newUser,
       },
@@ -27,12 +28,13 @@ exports.login = async (req, res) => {
     if (!user) {
       return res
         .status(401)
-        .json({ error: "Authentication failed. User not found." });
+        .json({ status: 'error', message: "Authentication failed. User not found." });
     }
 
     if (!user.authenticate(password)) {
       return res.status(401).json({
-        error: "Authentication failed. Email password does not match",
+        status: 'error',
+        message: "Authentication failed. Email password does not match",
       });
     }
 
@@ -40,7 +42,9 @@ exports.login = async (req, res) => {
 
     res.cookie("token", token);
 
-    res.json({
+    return res.status(200).json({
+      status: 'success',
+      message: `Congratulation! You are logged in now.`,
       token,
       user: {
         _id: user._id,
