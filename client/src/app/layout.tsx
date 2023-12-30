@@ -1,10 +1,11 @@
 import "./globals.css";
 import { Providers } from "../redux/provider";
-import TopHeader from "./TopHeader";
-import Header from "./Header";
-import Footer from "./Footer";
+import TopHeader from "./components/TopHeader";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import LoginModal from "./modals/LoginModal";
 import RegisterModal from "./modals/RegisterModal";
+import { useEffect } from "react";
 
 export const metadata = {
   title: "Create Next App",

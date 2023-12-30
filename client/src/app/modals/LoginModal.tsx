@@ -53,6 +53,7 @@ const LoginModal = () => {
             })
           );
           localStorage.setItem("accessToken", accessToken);
+          dispatch(modalAction({ modalName: "loginModal", isOpen: false }));
         } else {
           toast.error(res.message);
         }

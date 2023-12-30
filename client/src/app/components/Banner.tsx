@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { bannerOne, bannerThree, bannerTwo } from "../assets/images";
+import { bannerOne, bannerThree, bannerTwo } from "../../assets/images";
 
 const Banner = () => {
   return (

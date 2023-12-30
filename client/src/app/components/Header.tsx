@@ -1,10 +1,10 @@
 "use client";
 
-import { logo } from "../assets/images";
+import { logo } from "../../assets/images";
 import React from "react";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
-import { modalAction } from "../redux/modalSlice";
+import { modalAction } from "../../redux/modalSlice";
 import { usePathname, useSearchParams } from "next/navigation";
 
 const Header = () => {

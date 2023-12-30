@@ -8,10 +8,10 @@ import {
   dummyThree,
   dummyTwo,
 } from "@/assets/images";
-import Banner from "./Banner";
-import CategoryBanners from "./CategoryBanners";
-import ProductCard from "./ProductCard";
-import { Tab, Tabs } from "./Tabs";
+import Banner from "./components/Banner";
+import CategoryBanners from "./components/CategoryBanners";
+import ProductCard from "./components/ProductCard";
+import { Tab, Tabs } from "./components/Tabs";
 import Image from "next/image";
 
 export default function Home() {

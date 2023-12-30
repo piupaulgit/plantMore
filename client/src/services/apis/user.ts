@@ -14,5 +14,5 @@ export const userLogin = (payload: object) => {
     return axios
         .post(`${API_URL}/${url}/login`, payload)
         .then((res) => res.data)
-        .catch((err) => err.response.data);
+        .catch((err) => err);
 };
