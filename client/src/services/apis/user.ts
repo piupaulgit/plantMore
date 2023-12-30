@@ -16,3 +16,10 @@ export const userLogin = (payload: object) => {
         .then((res) => res.data)
         .catch((err) => err);
 };
+
+export const getUserDetailWithToken = (payload: object) => {
+    return axios
+    .post(`${API_URL}/user/getUserWithToken`, payload)
+    .then((res:any) => res.data)
+    .catch((err) => err);
+};
