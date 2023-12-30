@@ -1,4 +1,19 @@
+const { json } = require("body-parser");
+const jwt = require('jsonwebtoken');
 const User = require("../models/user");
+
+exports.getUserWithToken = async (req, res) => {
+  const token = req.body.token;
+  if (!token) {
+    return res.sendStatus(401);
+  }
+
+  const user = jwt.verify(token, process.env.SECRETKEY, { algorithms: ['HS256'] });
+  res.status(200).json({
+    statue: 'success',
+    user
+  });
+}
 
 exports.getUserById = async (req, res, next, id) => {
   try {

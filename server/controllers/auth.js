@@ -38,7 +38,7 @@ exports.login = async (req, res) => {
       });
     }
 
-    const token = jsonToken.sign({ _id: user._id }, process.env.SECRETKEY);
+    const token = jsonToken.sign({ _id: user._id, email: user.email, role: user.role }, process.env.SECRETKEY);
 
     res.cookie("token", token);
 
