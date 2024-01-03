@@ -45,6 +45,8 @@ const LoginModal = () => {
         if (res.status === "success") {
           toast.success(res.message);
           const { email, accessToken, role } = res.user;
+          localStorage.setItem("accessToken", accessToken);
+          dispatch(modalAction({ modalName: "loginModal", isOpen: false }));
           dispatch(
             saveUser({
               email,
@@ -52,8 +54,6 @@ const LoginModal = () => {
               role,
             })
           );
-          localStorage.setItem("accessToken", accessToken);
-          dispatch(modalAction({ modalName: "loginModal", isOpen: false }));
         } else {
           toast.error(res.message);
         }

@@ -1,17 +1,24 @@
 "use client";
 
 import { logo } from "../../assets/images";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { modalAction } from "../../redux/modalSlice";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { RootState } from "@/redux/store";
+import Link from "next/link";
 import { useUser } from "../_lib/Auth";
 
 const Header = () => {
   const dispath = useDispatch();
   const pathName = usePathname();
-  const user = useUser();
+  useUser();
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] =
+    useState<boolean>(false);
+  const userDetail = useSelector(
+    (state: RootState) => state.UserReducer.currentUser
+  );
 
   return (
     <header className="flex py-6">
@@ -27,17 +34,17 @@ const Header = () => {
               ["Products", "/products"],
               ["Contact", "/contact"],
             ].map(([title, url]) => (
-              <a
+              <Link
                 href={url}
                 className={`${
                   pathName == url ? "text-lime-600 underline" : "text-slate-700"
                 } rounded-lg px-3 py-2  font-medium hover:bg-slate-100 hover:text-slate-900`}
               >
                 {title}
-              </a>
+              </Link>
             ))}
           </nav>
-          {!user ? (
+          {!userDetail.email ? (
             <ul className="flex gap-2 text-sm">
               <li className="text-gray-600">
                 <svg
@@ -113,8 +120,13 @@ const Header = () => {
                   </span>
                 </a>
               </li>
-              <li>
-                <button className="w-[35px] h-[35px] ml-3 rounded-full bg-lime-600 text-white text-center flex justify-center items-center hover:bg-gray-700">
+              <li className=" relative">
+                <button
+                  className="w-[35px] h-[35px] ml-3 rounded-full bg-lime-600 text-white text-center flex justify-center items-center hover:bg-gray-700"
+                  onClick={() =>
+                    setIsProfileDropdownOpen(!isProfileDropdownOpen)
+                  }
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -126,6 +138,39 @@ const Header = () => {
                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
                   </svg>
                 </button>
+                {isProfileDropdownOpen && (
+                  <div className=" rounded-md bg-white border-[1px] absolute z-10 min-w-[200px] right-0">
+                    <ul>
+                      <li className=" font-light text-sm py-2 px-5 text-gray-700 bg-slate-100">
+                        Hello, {userDetail.email}
+                      </li>
+                      <li>
+                        <Link
+                          className=" font-light text-sm py-2 px-5 text-gray-700 hover:bg-slate-100 block"
+                          href=""
+                        >
+                          Profile
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className=" font-light text-sm py-2 px-5 text-gray-700 hover:bg-slate-100 block"
+                          href=""
+                        >
+                          Order
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className=" font-light text-sm py-2 px-5  text-white bg-red-500 hover:bg-slate-800 block"
+                          href=""
+                        >
+                          Logout
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </li>
             </ul>
           )}

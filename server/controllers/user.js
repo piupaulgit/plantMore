@@ -1,4 +1,3 @@
-const { json } = require("body-parser");
 const jwt = require('jsonwebtoken');
 const User = require("../models/user");
 
