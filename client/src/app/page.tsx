@@ -11,6 +11,7 @@ import {
 import Banner from "./components/Banner";
 import CategoryBanners from "./components/CategoryBanners";
 import ProductCard from "./components/ProductCard";
+import ProductsList from "./components/ProductsList";
 import { Tab, Tabs } from "./components/Tabs";
 import Image from "next/image";
 
@@ -20,93 +21,45 @@ export default function Home() {
       <div className="px-5">
         <Banner></Banner>
         <Tabs position="justify-center">
-          <Tab title="All Plants">
-            <div className="flex flex-wrap gap-4">
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-            </div>
+          <Tab
+            active={true}
+            title="All Plants"
+            apiEndPoint={{
+              url: "/products/all",
+              filters: { limit: 5, tag: "" },
+            }}
+          >
+            <ProductsList />
             <div className="flex justify-center mt-20">
               <button className=" border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 hover:text-white">
                 Show All
               </button>
             </div>
           </Tab>
-          <Tab title="New Arrivals">
-            <div className="flex flex-wrap gap-4">
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-            </div>
+          <Tab
+            active={false}
+            title="New Arrivals"
+            apiEndPoint={{
+              url: "/products/all",
+              filters: { limit: 5, tag: "new" },
+            }}
+          >
+            <ProductsList />
             <div className="flex justify-center mt-20">
               <button className=" border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 hover:text-white">
                 Show All
               </button>
             </div>
           </Tab>
-          <Tab title="Sale">
-            <div className="flex flex-wrap gap-4">
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-            </div>
+          <Tab
+            active={false}
+            title="Sale"
+            apiEndPoint={{
+              url: "/products/all",
+              filters: { limit: 5, tag: "sale" },
+            }}
+          >
+            <ProductsList />
             <div className="flex justify-center mt-20">
               <button className=" border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 hover:text-white">
                 Show All

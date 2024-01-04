@@ -29,10 +29,17 @@ exports.getAllProducts = async (req, res) => {
     const excludedQueries = ['sort', 'limit', 'page'];
     excludedQueries.forEach(el => delete queryObj[el]);
 
+    if (req.query.tags) {
+      const tagsArray = req.query.tags.split(','); 
+      queryObj.tags = { $in: tagsArray };
+    }
+
     // advance filtering
     let queryString = JSON.stringify(queryObj);
     queryString = queryString.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
+
     let query = Product.find(JSON.parse(queryString));
+
 
     if(req.query.sort){
       const sortBy = req.query.sort;

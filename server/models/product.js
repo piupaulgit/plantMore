@@ -25,8 +25,8 @@ const ProductSchema = new Schema(
             default: 0
         },
         tags: {
-            type: Array,
-            default: false
+            type: [String],
+            default: []
         },
         stock: {
             type: Number,

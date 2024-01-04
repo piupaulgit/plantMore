@@ -1,14 +1,32 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export function Tabs(props: any) {
   const [activeTab, setActiveTab] = useState(findActiveTab(props.children));
+  const [activeUrl, setActiveUrl] = useState(findActiveUrl(props.children));
+  const [data, setData] = useState<any>();
+
+  useEffect(() => {
+    if (activeUrl) {
+      console.log(activeUrl);
+    }
+  }, [activeUrl]);
 
   function findActiveTab(a: any) {
     return a.reduce((activeVal: any, currentValue: any, i: number) => {
       if (currentValue.props.active) {
         return i;
+      }
+
+      return activeVal;
+    }, 0);
+  }
+
+  function findActiveUrl(a: any) {
+    return a.reduce((activeVal: any, currentValue: any, i: number) => {
+      if (currentValue.props.active) {
+        return currentValue.props.apiEndPoint;
       }
 
       return activeVal;
@@ -28,6 +46,8 @@ export function Tabs(props: any) {
                 currentTab={i}
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
+                setActiveUrl={setActiveUrl}
+                apiEndPoint={item.props.apiEndPoint}
               >
                 {item.props.title}
               </Tab>
@@ -59,7 +79,10 @@ export function Tab(props: any) {
           ? " text-gray-700"
           : " text-gray-300"
       }`}
-        onClick={() => props.setActiveTab(props.currentTab)}
+        onClick={() => {
+          props.setActiveTab(props.currentTab);
+          props.setActiveUrl(props.apiEndPoint);
+        }}
       >
         {props.children}
       </div>
