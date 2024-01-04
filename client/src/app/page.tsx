@@ -21,45 +21,39 @@ export default function Home() {
       <div className="px-5">
         <Banner></Banner>
         <Tabs position="justify-center">
-          <Tab
-            active={true}
-            title="All Plants"
-            apiEndPoint={{
-              url: "/products/all",
-              filters: { limit: 5, tag: "" },
-            }}
-          >
-            <ProductsList />
+          <Tab active={true} title="All Plants">
+            <ProductsList
+              productTag="all"
+              apiEndPoint={{
+                filters: { limit: 8 },
+              }}
+            />
             <div className="flex justify-center mt-20">
               <button className=" border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 hover:text-white">
                 Show All
               </button>
             </div>
           </Tab>
-          <Tab
-            active={false}
-            title="New Arrivals"
-            apiEndPoint={{
-              url: "/products/all",
-              filters: { limit: 5, tag: "new" },
-            }}
-          >
-            <ProductsList />
+          <Tab active={false} title="New Arrivals">
+            <ProductsList
+              productTag="new"
+              apiEndPoint={{
+                filters: { limit: 8, tags: "new" },
+              }}
+            />
             <div className="flex justify-center mt-20">
               <button className=" border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 hover:text-white">
                 Show All
               </button>
             </div>
           </Tab>
-          <Tab
-            active={false}
-            title="Sale"
-            apiEndPoint={{
-              url: "/products/all",
-              filters: { limit: 5, tag: "sale" },
-            }}
-          >
-            <ProductsList />
+          <Tab active={false} title="Sale">
+            <ProductsList
+              productTag="sale"
+              apiEndPoint={{
+                filters: { limit: 8, tags: "sale" },
+              }}
+            />
             <div className="flex justify-center mt-20">
               <button className=" border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 hover:text-white">
                 Show All
@@ -77,32 +71,32 @@ export default function Home() {
             <h2 className=" text-3xl font-bold text-gray-600 text-center">
               Summer Collection
             </h2>
-            <div className="flex flex-wrap gap-4 mt-20">
+            {/* <div className="flex flex-wrap gap-4 mt-20">
               <div className="w-[24%] mb-5">
                 <ProductCard
-                  title="Aliquet auctor sem"
+                  name="Aliquet auctor sem"
                   price="200"
                 ></ProductCard>
               </div>
               <div className="w-[24%] mb-5">
                 <ProductCard
-                  title="Aliquet auctor sem"
+                  name="Aliquet auctor sem"
                   price="200"
                 ></ProductCard>
               </div>
               <div className="w-[24%] mb-5">
                 <ProductCard
-                  title="Aliquet auctor sem"
+                  name="Aliquet auctor sem"
                   price="200"
                 ></ProductCard>
               </div>
               <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
+                <ProductCard productDetail={}
+                  name="Aliquet auctor sem"
                   price="200"
                 ></ProductCard>
               </div>
-            </div>
+            </div> */}
             <div className="flex justify-center mt-20">
               <button className=" border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 hover:text-white">
                 Show All

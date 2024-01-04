@@ -1,27 +1,45 @@
-import React from "react";
+"use client";
+
+import { addProductsAction } from "@/redux/ProductsSlice";
+import { getProducts } from "@/services/apis/products";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import ProductCard from "./ProductCard";
 
-const ProductsList = () => {
+interface IProductsListProps {
+  apiEndPoint: Object;
+  productTag: string;
+}
+
+const ProductsList = (props: IProductsListProps) => {
+  const dispatch = useDispatch();
+  const [productsList, setProductsList] = useState<any>([]);
+
+  useEffect(() => {
+    try {
+      getProducts(props.apiEndPoint).then((res: any) => {
+        if (res.status === "success") {
+          dispatch(
+            addProductsAction({ [props.productTag]: res.data.products })
+          );
+          setProductsList(res.data.products);
+        }
+      });
+    } catch {}
+    console.log("pp");
+  }, []);
+
   return (
     <div className="flex flex-wrap gap-4">
-      <div className="w-[24%] mb-5">
-        <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-      </div>
-      <div className="w-[24%] mb-5">
-        <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-      </div>
-      <div className="w-[24%] mb-5">
-        <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-      </div>
-      <div className="w-[24%] mb-5">
-        <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-      </div>
-      <div className="w-[24%] mb-5">
-        <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-      </div>
-      <div className="w-[24%] mb-5">
-        <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-      </div>
+      {productsList.length > 0 &&
+        productsList.map((product: any) => {
+          return (
+            <div className="w-[24%] mb-5">
+              <ProductCard productDetail={product}></ProductCard>
+            </div>
+          );
+        })}
+      ;
     </div>
   );
 };

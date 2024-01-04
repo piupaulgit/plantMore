@@ -65,7 +65,7 @@ const Banner = () => {
             <div className="w-[49%] relative">
               <ImageHelper
                 imageAlt={bannerOne.title}
-                imageData={bannerOne.image}
+                imageData={bannerOne.image.data}
               />
               <div className="text-white text-center absolute top-[80px] left-[50%] translate-x-[-50%] w-full">
                 <h2 className=" font-extralight text-2xl mb-3">
@@ -80,7 +80,7 @@ const Banner = () => {
               <div className=" relative">
                 <ImageHelper
                   imageAlt={bannerTwo.title}
-                  imageData={bannerTwo.image}
+                  imageData={bannerTwo.image.data}
                 />
                 <div className="absolute right-[20px] top-[20%] max-w-[40%]">
                   <h2 className="text-4xl font-black text-gray-700 mb-2">
@@ -95,8 +95,9 @@ const Banner = () => {
             {bannerThree?.title && (
               <div className=" relative">
                 <ImageHelper
+                  test="banner"
                   imageAlt={bannerThree.title}
-                  imageData={bannerThree.image}
+                  imageData={bannerThree.image.data}
                 />
                 <div className=" absolute left-[40px] top-[20%] max-w-[40%]">
                   <h2 className="text-4xl font-black text-gray-700 mb-2">

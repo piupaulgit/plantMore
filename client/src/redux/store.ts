@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import ModalReducer from "./modalSlice";
 import UserReducer from './userSlice';
+import ProductsSlice from './ProductsSlice';
 
 export const store = configureStore({
   reducer: {
     ModalReducer,
-    UserReducer
+    UserReducer,
+    ProductsSlice
   },
   devTools: process.env.NODE_ENV !== "production",
 });
