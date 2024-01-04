@@ -1,8 +1,8 @@
-import OtherPageBanner from "../components/OtherPageBanner";
+import OtherPageBanner from "@/app/components/OtherPageBanner";
+import ProductsList from "@/app/components/ProductsList";
 import React from "react";
-import ProductsList from "../components/ProductsList";
 
-const Products = () => {
+const Products = ({ slug }: any) => {
   return (
     <>
       <OtherPageBanner title="Products"></OtherPageBanner>
@@ -20,7 +20,7 @@ const Products = () => {
           </select>
         </div>
         <div className="flex flex-wrap gap-4 mt-10">
-          <ProductsList apiEndPoint={{ filters: {} }} productTag="all" />
+          <ProductsList apiEndPoint={{ filters: {} }} productTag={slug} />
         </div>
       </div>
     </>

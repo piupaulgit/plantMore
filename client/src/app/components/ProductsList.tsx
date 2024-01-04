@@ -8,7 +8,7 @@ import ProductCard from "./ProductCard";
 
 interface IProductsListProps {
   apiEndPoint: Object;
-  productTag: string;
+  productTag: any;
 }
 
 const ProductsList = (props: IProductsListProps) => {

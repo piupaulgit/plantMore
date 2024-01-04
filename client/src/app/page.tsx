@@ -10,10 +10,10 @@ import {
 } from "@/assets/images";
 import Banner from "./components/Banner";
 import CategoryBanners from "./components/CategoryBanners";
-import ProductCard from "./components/ProductCard";
 import ProductsList from "./components/ProductsList";
 import { Tab, Tabs } from "./components/Tabs";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -29,9 +29,12 @@ export default function Home() {
               }}
             />
             <div className="flex justify-center mt-20">
-              <button className=" border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 hover:text-white">
+              <Link
+                href={`/products/all`}
+                className=" border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 text-center hover:text-white"
+              >
                 Show All
-              </button>
+              </Link>
             </div>
           </Tab>
           <Tab active={false} title="New Arrivals">
@@ -42,9 +45,12 @@ export default function Home() {
               }}
             />
             <div className="flex justify-center mt-20">
-              <button className=" border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 hover:text-white">
+              <Link
+                href={`/products/new`}
+                className="text-center border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 hover:text-white"
+              >
                 Show All
-              </button>
+              </Link>
             </div>
           </Tab>
           <Tab active={false} title="Sale">
@@ -55,9 +61,12 @@ export default function Home() {
               }}
             />
             <div className="flex justify-center mt-20">
-              <button className=" border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 hover:text-white">
+              <Link
+                href={`/products/sale`}
+                className="text-center border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 hover:text-white"
+              >
                 Show All
-              </button>
+              </Link>
             </div>
           </Tab>
         </Tabs>
