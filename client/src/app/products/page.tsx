@@ -1,6 +1,6 @@
 import OtherPageBanner from "../components/OtherPageBanner";
-import ProductCard from "../components/ProductCard";
 import React from "react";
+import ProductsList from "../components/ProductsList";
 
 const Products = () => {
   return (
@@ -20,54 +20,7 @@ const Products = () => {
           </select>
         </div>
         <div className="flex flex-wrap gap-4 mt-10">
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
-          <div className="w-[19%] mb-5">
-            <ProductCard title="Aliquet auctor sem" price="200"></ProductCard>
-          </div>
+          <ProductsList apiEndPoint={{ filters: {} }} productTag="all" />
         </div>
       </div>
     </>

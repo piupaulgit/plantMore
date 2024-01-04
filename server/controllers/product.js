@@ -26,7 +26,7 @@ exports.getProduct = (req, res) => {
 exports.getAllProducts = async (req, res) => {
   try {
     const queryObj = {...req.query};
-    const excludedQueries = ['sort', 'limit', 'page'];
+    const excludedQueries = ['sort', 'limit', 'page','tags'];
     excludedQueries.forEach(el => delete queryObj[el]);
 
     if (req.query.tags) {
@@ -49,7 +49,7 @@ exports.getAllProducts = async (req, res) => {
     }
 
     const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 8;
+    const limit = req.query.limit * 1 || 50;
     const skip = (page - 1) * limit;
 
     query = query.skip(skip).limit(limit)
