@@ -59,9 +59,6 @@ exports.getAllProducts = async (req, res) => {
       if(skip >= totalPageCount) throw new Error('This page does not exist.')
     }
 
-
-    
-
     const products = await query;
 
     res.status(201).json({

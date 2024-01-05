@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import ProductCard from "./ProductCard";
 
 interface IProductsListProps {
-  apiEndPoint: Object;
+  apiEndPoint?: Object;
   productTag: any;
 }
 
@@ -26,7 +26,6 @@ const ProductsList = (props: IProductsListProps) => {
         }
       });
     } catch {}
-    console.log("pp");
   }, []);
 
   return (
