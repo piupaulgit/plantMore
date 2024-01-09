@@ -9,7 +9,7 @@ router.param("categoryId", getCategoryById);
 
 
 router.post("/add/:userId", isSignedIn, isAuthenticated, isAdmin, addCategory);
-router.get("/all/:userId", isSignedIn, isAuthenticated, isAdmin, getAllCategories);
+router.get("/all", getAllCategories);
 router.put("/update/:userId/:categoryId", isSignedIn, isAuthenticated, isAdmin, updateCategory);
 router.delete("/delete/:userId/:categoryId", isSignedIn, isAuthenticated, isAdmin, deleteCategory)
 

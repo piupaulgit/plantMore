@@ -38,15 +38,15 @@ exports.addCategory = async (req, res) => {
 
     let category = await Category.create(obj);
 
-    if (file.photo) {
-      if (file.photo.size > 3000000) {
+    if (file.image) {
+      if (file.image.size > 3000000) {
         return res.status(400).json({
           error: "File size too big",
         });
       }
 
-      category.photo.data = fs.readFileSync(file.photo[0].filepath);
-      category.photo.contentType = file.photo[0].mimetype;
+      category.image.data = fs.readFileSync(file.image[0].filepath);
+      category.image.contentType = file.image[0].mimetype;
     }
 
     try {
