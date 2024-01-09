@@ -1,10 +1,11 @@
 import { productSample } from "@/assets/images";
-import OtherPageBanner from "@/components/OtherPageBanner";
-import ProductCard from "@/components/ProductCard";
-import Quantity from "@/components/Quantity";
-import { Tab, Tabs } from "@/components/Tabs";
+import ProductCard from "../components/ProductCard";
+import Quantity from "../components/Quantity";
+import { Tab, Tabs } from "../components/Tabs";
 import Image from "next/image";
 import React from "react";
+import OtherPageBanner from "../components/OtherPageBanner";
+import ProductsList from "../components/ProductsList";
 
 const SinglePage = () => {
   return (
@@ -132,24 +133,10 @@ const SinglePage = () => {
               Related Products
             </h3>
             <div className="flex flex-wrap gap-4">
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  title="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
+              <ProductsList productTag="sale"
+              apiEndPoint={{
+                filters: { limit: 8, tags: "sale" },
+              }} />
             </div>
           </div>
         </div>

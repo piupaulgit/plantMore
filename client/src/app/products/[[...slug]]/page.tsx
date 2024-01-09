@@ -12,7 +12,7 @@ const Products = ({
   if (params.slug?.length === 1) {
     return (
       <>
-        <OtherPageBanner title="Products"></OtherPageBanner>
+        <OtherPageBanner title={`${params.slug[0]} Products`}></OtherPageBanner>
         <div className="container mx-auto">
           <div className="flex justify-end gap-4">
             <select className="border-[1px] border-solid border-gray-300 w-[300px] px-3 py-2">
@@ -26,7 +26,7 @@ const Products = ({
               <option>Low to high</option>
             </select>
           </div>
-          <div className="flex flex-wrap gap-4 mt-10">
+          <div>
             <ProductsList
               productTag={params.slug[0]}
               apiEndPoint={{
@@ -43,7 +43,7 @@ const Products = ({
   } else {
     return (
       <>
-        <OtherPageBanner title="Products"></OtherPageBanner>
+        <OtherPageBanner title="All Products"></OtherPageBanner>
         <div className="container mx-auto">
           <div className="flex justify-end gap-4">
             <select className="border-[1px] border-solid border-gray-300 w-[300px] px-3 py-2">
@@ -57,7 +57,7 @@ const Products = ({
               <option>Low to high</option>
             </select>
           </div>
-          <div className="flex flex-wrap gap-4 mt-10">
+          <div className="">
             <ProductsList
               productTag="all"
               apiEndPoint={{

@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { bannerOne, bannerThree, bannerTwo } from "../../assets/images";
 import { getAllBanners } from "@/services/apis/banner";
 import ImageHelper from "./ImageHelper";
 import Spinner from "./Spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { saveBannerAction } from "@/redux/BannerSlice";
+import { RootState } from "@/redux/store";
 
 interface IBanner {
   title: string;
@@ -19,8 +20,11 @@ const Banner = () => {
   const [bannerTwo, setBannerTwo] = useState<IBanner>(Object);
   const [bannerThree, setBannerThree] = useState<IBanner>(Object);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const dispatch = useDispatch();
+  const bannersFromStore = useSelector((state: RootState) => state.BannerSlice);
 
   useEffect(() => {
+    console.log(bannersFromStore);
     setIsLoading(true);
     try {
       getAllBanners().then((res: any) => {
@@ -35,14 +39,32 @@ const Banner = () => {
           switch (bannerObject.type) {
             case "banner_one":
               setBannerOne(bannerObject);
+              dispatch(
+                saveBannerAction({
+                  bannerName: "bannerOne",
+                  value: bannerObject,
+                })
+              );
               break;
 
             case "banner_two":
               setBannerTwo(bannerObject);
+              dispatch(
+                saveBannerAction({
+                  bannerName: "bannerTwo",
+                  value: bannerObject,
+                })
+              );
               break;
 
             case "banner_three":
               setBannerThree(bannerObject);
+              dispatch(
+                saveBannerAction({
+                  bannerName: "bannerThree",
+                  value: bannerObject,
+                })
+              );
               break;
           }
         });
@@ -59,7 +81,7 @@ const Banner = () => {
         }`}
       >
         {}
-        {isLoading && <Spinner />}
+        {isLoading && <Spinner title="Loading Banners..." />}
         <>
           {bannerOne?.title && (
             <div className="w-[49%] relative">
