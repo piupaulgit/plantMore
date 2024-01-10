@@ -14,6 +14,7 @@ import ProductsList from "./components/ProductsList";
 import { Tab, Tabs } from "./components/Tabs";
 import Image from "next/image";
 import Link from "next/link";
+import HowItWorks from "./components/HowItWorks";
 
 export default function Home() {
   return (
@@ -73,44 +74,14 @@ export default function Home() {
         <CategoryBanners></CategoryBanners>
 
         <section className=" mt-36">
-          <div className="container mx-auto">
+          <div className="mx-auto">
             <h6 className=" text-lg font-light text-lime-600 text-center mb-2">
               Find your dream plants
             </h6>
             <h2 className=" text-3xl font-bold text-gray-600 text-center">
-              Summer Collection
+              Here's How It Works
             </h2>
-            {/* <div className="flex flex-wrap gap-4 mt-20">
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  name="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  name="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-              <div className="w-[24%] mb-5">
-                <ProductCard
-                  name="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-              <div className="w-[24%] mb-5">
-                <ProductCard productDetail={}
-                  name="Aliquet auctor sem"
-                  price="200"
-                ></ProductCard>
-              </div>
-            </div> */}
-            <div className="flex justify-center mt-20">
-              <button className=" border-solid border-[1px] border-gray-900 py-3 w-[200px] hover:bg-gray-900 hover:text-white">
-                Show All
-              </button>
-            </div>
+            <HowItWorks />
           </div>
         </section>
 

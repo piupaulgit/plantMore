@@ -16,9 +16,19 @@ import dummyFive from './dummy_05.jpeg';
 import dummySix from './dummy_06.jpeg'; 
 import dummySeven from './dummy_07.jpeg'; 
 import dummyEight from './dummy_08.jpeg'; 
+import pick from './pick.png';
+import pot from './pot.png';
+import pack from './pack.png';
+import watch from './watch.png';
+import arrow from './arrow.png';
 
 export {
+    arrow,
     logo,
+    pick,
+    pot,
+    pack,
+    watch,
     bannerOne,
     bannerTwo,
     bannerThree,

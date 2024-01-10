@@ -80,7 +80,6 @@ const Banner = () => {
           isLoading && "min-h-[500px] bg-gray-100 relative"
         }`}
       >
-        {}
         {isLoading && <Spinner title="Loading Banners..." />}
         <>
           {bannerOne?.title && (
