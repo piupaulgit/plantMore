@@ -23,11 +23,15 @@ const CategoryBanners = () => {
 
   return (
     <section>
-      <div className="container mx-auto flex gap-6 flex-wrap">
+      <div className="container mx-auto flex flex-wrap">
         {categories &&
           categories.map((category: any, index) => {
             return (
-              <div className=" relative mb-4 w-1/2" key={index}>
+              <div
+                className={` border-[10px] border-white relative bg-red-400 overflow-hidden w-1/2 h-[400px]
+                }`}
+                key={index}
+              >
                 {category?.image && (
                   <ImageHelper
                     imageAlt={category.name}
