@@ -17,3 +17,10 @@ export const getProducts = (payload:any) => {
         .then((res) => res.data)
         .catch((err) => err.response.data);
 };
+
+export const getSigleProduct = (payload:any) => {
+     return axios
+         .get(`${API_URL}/${url}/${payload}`)
+         .then((res) => res.data)
+         .catch((err) => err.response.data);
+ };

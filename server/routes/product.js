@@ -8,7 +8,7 @@ router.param("userId", getUserById);
 router.param("productId", getProductById);
 
 router.get("/all", getAllProducts);
-router.get("/:userId/:productId", isSignedIn, isAuthenticated, isAdmin, getProduct);
+router.get("/:productId", getProduct);
 router.post("/add/:userId", isSignedIn, isAuthenticated, isAdmin, addProduct);
 router.put("/update/:userId/:productId", isSignedIn, isAuthenticated, isAdmin, updateProduct);
 router.delete("/delete/:userId/:productId", isSignedIn, isAuthenticated, isAdmin, deleteProduct);

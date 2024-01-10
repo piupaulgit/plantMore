@@ -1,15 +1,18 @@
 import { productSample } from "@/assets/images";
-import ProductCard from "../components/ProductCard";
-import Quantity from "../components/Quantity";
-import { Tab, Tabs } from "../components/Tabs";
+import Quantity from "../../components/Quantity";
+import { Tab, Tabs } from "../../components/Tabs";
 import Image from "next/image";
-import React from "react";
-import OtherPageBanner from "../components/OtherPageBanner";
-import ProductsList from "../components/ProductsList";
+import React, { useEffect } from "react";
+import OtherPageBanner from "../../components/OtherPageBanner";
+import ProductsList from "../../components/ProductsList";
 
-const SinglePage = () => {
+const SinglePage = ({params}) => {
+  useEffect(() => {
+
+  }, [params.productId]);
   return (
     <>
+    {params.productId}
       <OtherPageBanner title="Shop"></OtherPageBanner>
       <section>
         <div className="container mx-auto ">

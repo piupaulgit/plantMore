@@ -1,24 +1,25 @@
 import { productSample } from "@/assets/images";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import ImageHelper from "./ImageHelper";
 
 interface IProductdetailProps {
   productDetail: {
+    _id: string;
     name: string;
     price: number;
     photo: any;
   };
 }
 
-const ProductCard = (props: IProductdetailProps) => {
+const ProductCard = ({ productDetail }: IProductdetailProps) => {
   return (
-    <div>
+    <Link href={`/singleProduct/${productDetail?._id}`}>
       <div className="flex justify-center relative group ease-linear overflow-hidden cursor-pointer">
         <ImageHelper
-          test="produc"
-          imageAlt={props?.productDetail?.name}
-          imageData={props?.productDetail?.photo?.data}
+          imageAlt={productDetail?.name}
+          imageData={productDetail?.photo?.data}
         />
         <ul className="ease-linear duration-100 absolute top-[15px] right-[-50px] group-hover:right-[15px]">
           <li>
@@ -66,10 +67,10 @@ const ProductCard = (props: IProductdetailProps) => {
         </ul>
       </div>
       <div className="text-center">
-        <h2 className=" text-lg font-light ">{props.productDetail.name}</h2>
-        <h4 className=" font-bold">Rs. {props.productDetail.price}</h4>
+        <h2 className=" text-lg font-light ">{productDetail.name}</h2>
+        <h4 className=" font-bold">Rs. {productDetail.price}</h4>
       </div>
-    </div>
+    </Link>
   );
 };
 
