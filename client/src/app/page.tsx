@@ -85,6 +85,22 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="m-36">
+          <h2 className=" text-3xl font-bold text-lime-600 text-center mb-2">
+            Sign Up To Our Newsletter
+          </h2>
+          <h6 className=" text-sm font-light text-gray-600 text-center mb-2">
+            Stay up to date on the latest news with our carefully curated
+            newsletters.
+          </h6>
+          <div className="mt-[40px] flex items-center justify-center">
+            <input type="text" className=" bg-gray-200 py-4 px-4 w-[40%]" />
+            <button className="p-4 bg-black text-white px-[40px] hover:bg-lime-600">
+              Submit
+            </button>
+          </div>
+        </section>
+
         <div className="flex mt-20">
           <Image src={dummyOne} alt="image"></Image>
           <Image src={dummyTwo} alt="image"></Image>
@@ -101,13 +117,16 @@ export default function Home() {
               Be responsible
             </h6>
             <h2 className=" text-3xl font-bold text-gray-600 text-center mb-4">
-              Lecture on environment
+              Green Guardians: Planting the Seeds of a Sustainable Future
             </h2>
             <p className="w-[80%] text-center mx-auto">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequatur, velit nulla quisquam doloremque, quos rerum
-              voluptatem maiores nemo, quam ullam in animi optio quidem nobis.
-              Ducimus fugiat illum voluptatem laboriosam!
+              Planting trees is a powerful and accessible means of saving our
+              planet. Trees act as nature's carbon sinks, absorbing carbon
+              dioxide and releasing oxygen, mitigating the impacts of climate
+              change. By actively participating in tree-planting initiatives,
+              individuals contribute to a sustainable future, fostering
+              biodiversity and preserving the delicate balance of our
+              ecosystems.
             </p>
           </div>
         </section>
