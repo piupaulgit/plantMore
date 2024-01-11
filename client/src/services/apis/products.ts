@@ -18,7 +18,7 @@ export const getProducts = (payload:any) => {
         .catch((err) => err.response.data);
 };
 
-export const getSigleProduct = (payload:any) => {
+export const getSingleProduct = (payload:any) => {
      return axios
          .get(`${API_URL}/${url}/${payload}`)
          .then((res) => res.data)

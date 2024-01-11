@@ -39,7 +39,7 @@ const ProductSchema = new Schema(
         },
         category: {
             type: ObjectId,
-            ref: "Categoty",
+            ref: "Category",
             required: true,
         },
         photo: {

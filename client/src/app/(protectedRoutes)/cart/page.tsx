@@ -7,7 +7,7 @@ import React from "react";
 const Cart = () => {
   return (
     <>
-      <OtherPageBanner title="Cart"></OtherPageBanner>
+      <OtherPageBanner title="Your Cart"></OtherPageBanner>
       <div className="container mx-auto">
         <SelectedProductList></SelectedProductList>
         <div className="mt-6 flex justify-between">

@@ -15,7 +15,7 @@ interface IProductdetailProps {
 
 const ProductCard = ({ productDetail }: IProductdetailProps) => {
   return (
-    <Link href={`/singleProduct/${productDetail?._id}`}>
+    <Link href={`/product/${productDetail?._id}`}>
       <div className="flex justify-center relative group ease-linear overflow-hidden cursor-pointer">
         <ImageHelper
           imageAlt={productDetail?.name}

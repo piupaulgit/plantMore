@@ -5,7 +5,7 @@ const fs = require("fs");
 
 exports.getProductById = async (req, res, next, id) => {
   try {
-    const product = await Product.findById(id);
+    const product = await Product.findById(id).populate("category", "name");;
     req.product = product;
     next();
   } catch (err) {
@@ -14,7 +14,6 @@ exports.getProductById = async (req, res, next, id) => {
 };
 
 exports.getProduct = (req, res) => {
-  req.product.photo = undefined;
   res.status(200).json({
     status: "success",
     data: {
