@@ -31,7 +31,7 @@ const SinglePage = ({ params }: any) => {
   }, []);
   return (
     <>
-      <OtherPageBanner title={product.name}></OtherPageBanner>
+      <OtherPageBanner title={`Plant name: ${product.name}`}></OtherPageBanner>
       <section className=" relative">
         {isLoading && <Spinner title="Loading Product..." />}
         {product.name && (
