@@ -129,10 +129,7 @@ const SinglePage = ({ params }: any) => {
                 <Tab title="Description">
                   <p className=" text-gray-500 font-light text-sm mb-8">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                    fringilla augue nec est tristique auctor. Donec non est at
-                    libero vulputate rutrum. Morbi ornare lectus quis justo
-                    gravida semper. Nulla tellus mi, vulputate adipiscing cursus
-                    eu, suscipit id nulla. Donec a neque libero.
+                    fringilla augue nec est tristique auctor.
                   </p>
                   <p className=" text-gray-500 font-light text-sm">
                     Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus
